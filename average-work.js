@@ -4,6 +4,8 @@ const blockchain = new Blockchain();
 
 blockchain.addBlock({ data: 'initial' });
 
+console.log('first block, block', blockchain.chain[blockchain.chain.length - 1]);
+
 let prevTimestamp;
 let nextTimestamp;
 let nextBlock;

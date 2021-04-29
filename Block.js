@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-const-assign */
+const hexToBinary = require('hex-to-binary');
 const { genesis, MINE_RATE } = require('./config');
 const cryptoHash = require('./util/crypto-hash');
 
@@ -36,7 +37,7 @@ class Block {
       timestamp = Date.now();
       difficulty = Block.adjustDifficulty({ originalBlock: lastBlock, timestamp });
       hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
-    } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
+    } while (hexToBinary(hash).substring(0, difficulty) !== '0'.repeat(difficulty));
 
     return new this({
       timestamp,
