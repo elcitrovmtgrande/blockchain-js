@@ -1,6 +1,6 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-const-assign */
-const { genesis } = require('./config');
+const { genesis, MINE_RATE } = require('./config');
 const cryptoHash = require('./util/crypto-hash');
 
 /**
@@ -25,15 +25,16 @@ class Block {
   static mineBlock({ lastBlock, data }) {
     let hash;
     let timestamp;
-
+    const lastHash = lastBlock.hash;
     // const timestamp = Date.now();
-    const { difficulty, hash: lastHash } = lastBlock;
+    let { difficulty } = lastBlock;
     let nonce = 0;
 
     do {
       // todo
       nonce++;
       timestamp = Date.now();
+      difficulty = Block.adjustDifficulty({ originalBlock: lastBlock, timestamp });
       hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
     } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
 
@@ -45,6 +46,14 @@ class Block {
       nonce,
       hash,
     });
+  }
+
+  static adjustDifficulty({ originalBlock, timestamp }) {
+    const { difficulty } = originalBlock;
+    const difference = timestamp - originalBlock.timestamp;
+    if (difficulty < 1) return 1;
+    if (difference > MINE_RATE) return difficulty - 1;
+    return difficulty + 1;
   }
 }
 
