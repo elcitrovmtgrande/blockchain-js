@@ -5,7 +5,9 @@ const cryptoHash = require('./util/crypto-hash');
  * A block is a unit storage of data
  */
 class Block {
-  constructor({timestamp, lastHash, hash, data}) {
+  constructor({
+    timestamp, lastHash, hash, data,
+  }) {
     this.timestamp = timestamp;
     this.lastHash = lastHash;
     this.hash = hash;
