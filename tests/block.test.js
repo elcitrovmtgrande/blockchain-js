@@ -35,7 +35,7 @@ describe('Block', () => {
 
   describe('mineBlock()', () => {
     const lastBlock = Block.genesis();
-    const newData = ['mined data', { toto: 'tutu' }];
+    const newData = ['mined data', 'tutu'];
     const minedBlock = Block.mineBlock({ lastBlock, data: newData });
 
     it('returns a Block instance', () => {
@@ -47,15 +47,15 @@ describe('Block', () => {
     });
 
     it('sets the `data`', () => {
-      expect(minedBlock.data).toBe(data);
+      expect(minedBlock.data).toBe(newData);
     });
 
     it('sets the `timestamp`', () => {
       expect(minedBlock.timestamp).not.toEqual(undefined);
     });
 
-    it('created a SHA-256 `hash` bsed on the proper inputs', () => {
-      expect(minedBlock.hash).toEqual(cryptoHash(minedBlock.timestamp, lastBlock.hash, data));
+    it('created a SHA-256 `hash` based on the proper inputs', () => {
+      expect(minedBlock.hash).toEqual(cryptoHash(minedBlock.timestamp, lastBlock.hash, newData));
     });
   });
 });
