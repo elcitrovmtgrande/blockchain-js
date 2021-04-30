@@ -1,4 +1,4 @@
-const INITIAL_DIFFICULTY = 1;
+const INITIAL_DIFFICULTY = 3;
 const MINE_RATE = 1000; // 1 seconde entre chaque bloc
 
 module.exports = {
