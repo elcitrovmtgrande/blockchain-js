@@ -141,7 +141,7 @@ describe('Blockchain', () => {
         });
 
         it('replaces the chain', () => {
-          console.log(blockchain.chain);
+          // console.log(blockchain.chain);
           expect(blockchain.chain).toEqual(newChain.chain);
         });
 
