@@ -1,8 +1,8 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-const-assign */
 const hexToBinary = require('hex-to-binary');
-const { genesis, MINE_RATE } = require('./config');
-const cryptoHash = require('./util/crypto-hash');
+const { genesis, MINE_RATE } = require('../config');
+const cryptoHash = require('../util/crypto-hash');
 
 /**
  * A block is a unit storage of data
