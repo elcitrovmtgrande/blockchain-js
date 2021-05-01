@@ -1,5 +1,6 @@
 const INITIAL_DIFFICULTY = 3;
 const MINE_RATE = 1000; // 1 seconde entre chaque bloc
+const STARTING_BALANCE = 1000;
 
 module.exports = {
   genesis: {
@@ -12,4 +13,5 @@ module.exports = {
   },
   INITIAL_DIFFICULTY,
   MINE_RATE,
+  STARTING_BALANCE,
 };
