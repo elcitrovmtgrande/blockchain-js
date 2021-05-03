@@ -14,5 +14,7 @@ module.exports = {
   plugins: ['jest'],
   rules: {
     'operator-assignment': 0,
+    'class-methods-use-this': 0,
+    'no-plusplus': 0,
   },
 };
