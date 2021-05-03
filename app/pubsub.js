@@ -34,6 +34,7 @@ class PubSub {
   }
 
   broadcastChain() {
+    console.log('broadcast chain');
     this.publish({
       channel: CHANNELS.BLOCKCHAIN,
       message: JSON.stringify(this.blockchain.chain),
@@ -53,7 +54,11 @@ class PubSub {
     console.log(`Message received. Channel: ${channel}. Message: ${message}.`);
     switch (channel) {
       case CHANNELS.BLOCKCHAIN:
-        this.blockchain.replaceChain(parsedMessage);
+        this.blockchain.replaceChain(parsedMessage, () => {
+          this.transactionPool.clearBlockchainTransactions({
+            chain: parsedMessage,
+          });
+        });
         break;
       case CHANNELS.TRANSACTION:
         this.transactionPool.setTransaction(parsedMessage);
